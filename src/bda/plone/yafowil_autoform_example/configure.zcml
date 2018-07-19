@@ -1,12 +1,20 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:gs="http://namespaces.zope.org/genericsetup"
+           xmlns:plone="http://namespaces.plone.org/plone"
            xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <plone:behavior
+    title="YAFOWIL Autoform Example Behavior"
+    description="Behavior for testing yafowil.plone.autoform"
+    provides=".behaviors.IYafowilAutoformExampleBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
 
   <gs:registerProfile
     name="default"
     title="YAFOWIL autoform example"
     directory="profiles/default"
-    description="Example content types using yafowil.plone autoforms"
+    description="Example content type using yafowil.plone autoforms"
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 

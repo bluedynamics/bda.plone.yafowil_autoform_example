@@ -31,6 +31,7 @@
     <element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
     <element value="yafowil.plone.autoform.behavior.IYafowilFormBehavior" />
+    <element value="bda.plone.yafowil_autoform_example.behaviors.IYafowilAutoformExampleBehavior" />
   </property>
 
   <!-- View information -->
