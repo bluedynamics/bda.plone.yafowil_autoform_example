@@ -1,0 +1,6 @@
+<metadata>
+ <version>1106</version>
+ <dependencies>
+  <dependency>profile-yafowil.plone:autoform</dependency>
+ </dependencies>
+</metadata>

@@ -1,0 +1,13 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:gs="http://namespaces.zope.org/genericsetup"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <gs:registerProfile
+    name="default"
+    title="YAFOWIL autoform examples"
+    directory="profiles/default"
+    description="Example content types using yafowil.plone autoforms"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
+</configure>

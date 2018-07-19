@@ -1,0 +1,6 @@
+<layers>
+  <layer
+    name="bda.plone.yafowil_autoform_example"
+    interface="bda.plone.yafowil_autoform_example.interfaces.IYafowilAutoformExampleLayer"
+    />
+</layers>
