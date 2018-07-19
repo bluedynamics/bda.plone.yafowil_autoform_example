@@ -2,7 +2,7 @@
 History
 =======
 
-2.5 (unreleased)
+1.0 (unreleased)
 ----------------
 
 - Initial

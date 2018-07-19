@@ -1,0 +1,12 @@
+/.installed.cfg
+/.mr.developer.cfg
+/bin/
+/develop-eggs/
+/devsrc/
+/include/
+/lib/
+/local/
+/parts/
+/pip-selfcheck.json
+/share/
+/src/bda.plone.yafowil_autoform_example.egg-info/
