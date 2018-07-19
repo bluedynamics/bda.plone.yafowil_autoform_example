@@ -1,7 +1,7 @@
-bda.plone.yafowil_autoform_examples
-===================================
+bda.plone.yafowil_autoform_example
+==================================
 
-Package containing yafowil.plone autoform examples.
+Package containing yafowil.plone autoform example.
 
 
 Contributors

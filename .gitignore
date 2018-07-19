@@ -1,6 +1,8 @@
+*.pyc
 /.installed.cfg
 /.mr.developer.cfg
 /bin/
+/var/
 /develop-eggs/
 /devsrc/
 /include/

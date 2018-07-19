@@ -4,7 +4,7 @@
 
   <gs:registerProfile
     name="default"
-    title="YAFOWIL autoform examples"
+    title="YAFOWIL autoform example"
     directory="profiles/default"
     description="Example content types using yafowil.plone autoforms"
     provides="Products.GenericSetup.interfaces.EXTENSION"

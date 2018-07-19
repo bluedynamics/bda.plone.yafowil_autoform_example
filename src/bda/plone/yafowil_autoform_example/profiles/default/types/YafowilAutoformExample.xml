@@ -30,6 +30,7 @@
     <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
     <element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
+    <element value="yafowil.plone.autoform.behavior.IYafowilFormBehavior" />
   </property>
 
   <!-- View information -->
