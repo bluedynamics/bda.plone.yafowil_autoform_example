@@ -1,6 +1,6 @@
+from node.utils import UNSET
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from yafowil.base import UNSET
 from yafowil.base import factory
 from yafowil.plone.autoform import directives
 from zope import schema
