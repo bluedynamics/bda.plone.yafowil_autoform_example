@@ -57,6 +57,72 @@ def autoform_field_2_factory(context):
     return array
 
 
+def autoform_field_3_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.autoform_field_3``.
+    """
+    value = context.autoform_field_3
+    value = value if value else []
+    array = factory('#field:#array',
+        name='autoform_field_3',
+        value=value,
+        props={
+            'label': _(u'autoform_field_3', default=u'Autoform Field 3'),
+            'array.label': ' ',
+            'help': _(u'autoform_field_3_description',
+                      default=u'Autoform Field 3 Description'),
+            'required': _(u'autoform_field_3_required',
+                          default=u'Autoform Field 3 must at least contain one entry'),
+            'persist': True
+        })
+    array['field'] = factory(
+        '#arrayfield:select',
+        props={
+            'label': _(u'autoform_field_3_entry', default=u'Entry'),
+            'vocabulary': [
+                ('1', 'Value 1'),
+                ('2', 'Value 2'),
+                ('3', 'Value 3'),
+            ]
+        })
+    return array
+
+
+def autoform_field_4_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.autoform_field_4``.
+    """
+    value = context.autoform_field_4
+    value = value if value else []
+    array = factory('#field:#array',
+        name='autoform_field_4',
+        value=value,
+        props={
+            'label': _(u'autoform_field_4', default=u'Autoform Field 4'),
+            'array.label': ' ',
+            'help': _(u'autoform_field_4_description',
+                      default=u'Autoform Field 4 Description'),
+            'required': _(u'autoform_field_4_required',
+                          default=u'Autoform Field 4 must at least contain one entry'),
+            'persist': True
+        })
+    compound = array['compound'] = factory('compound')
+    compound['field_1'] = factory(
+        '#arrayfield:text',
+        props={
+            'label': _(u'textfield', default=u'Textfield')
+        })
+    compound['field_2'] = factory(
+        '#arrayfield:select',
+        props={
+            'label': _(u'selectfield', default=u'Selectfield'),
+            'vocabulary': [
+                ('1', 'Value 1'),
+                ('2', 'Value 2'),
+                ('3', 'Value 3'),
+            ]
+        })
+    return array
+
+
 @provider(IFormFieldProvider)
 class IYafowilAutoformExampleBehavior(model.Schema):
 
@@ -87,4 +153,26 @@ class IYafowilAutoformExampleBehavior(model.Schema):
     directives.factory_callable(
         'autoform_field_2',
         autoform_field_2_factory
+    )
+
+    autoform_field_3 = schema.Tuple(required=False)
+    directives.order(
+        'autoform_field_3',
+        fieldset='default',
+        after='autoform_field_2'
+    )
+    directives.factory_callable(
+        'autoform_field_3',
+        autoform_field_3_factory
+    )
+
+    autoform_field_4 = schema.Tuple(required=False)
+    directives.order(
+        'autoform_field_4',
+        fieldset='default',
+        after='autoform_field_3'
+    )
+    directives.factory_callable(
+        'autoform_field_4',
+        autoform_field_4_factory
     )
