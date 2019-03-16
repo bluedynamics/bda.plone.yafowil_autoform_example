@@ -36,11 +36,11 @@
 
   <!-- View information -->
   <property name="add_view_expr">string:${folder_url}/++add++YafowilAutoformExample</property>
-  <property name="default_view">document_view</property>
+  <property name="default_view">autoform_example_view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>
   <property name="view_methods">
-    <element value="document_view"/>
+    <element value="autoform_example_view"/>
   </property>
 
   <!-- Method aliases -->
