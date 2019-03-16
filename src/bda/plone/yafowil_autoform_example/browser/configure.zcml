@@ -13,6 +13,7 @@
     permission="zope2.View"
     menu="plone_displayviews"
     title="View Yafowil Example"
+    class=".YafowilExampleView"
   />
 
 </configure>

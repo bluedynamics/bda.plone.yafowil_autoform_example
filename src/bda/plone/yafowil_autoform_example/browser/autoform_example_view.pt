@@ -4,16 +4,12 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="plone">
+    i18n:domain="bda.plone.yafowil_autoform_example">
 <body>
 
 <metal:content-core fill-slot="content-core">
-<metal:content-core define-macro="content-core"
-                    tal:define="toc context/table_of_contents|nothing;">
-  <div id="parent-fieldname-text"
-      tal:condition="context/text"
-      tal:content="structure python:context.text.output_relative_to(view.context)"
-      tal:attributes="class python: toc and 'pat-autotoc' or ''" />
+<metal:content-core define-macro="content-core">
+  <h1>Hello</h1>
 </metal:content-core>
 </metal:content-core>
 
