@@ -89,22 +89,22 @@ def select_array_field_factory(context):
     return array
 
 
-def nested_array_field_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.nested_array_field``.
+def compound_array_field_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.compound_array_field``.
     """
-    value = context.nested_array_field
+    value = context.compound_array_field
     value = value if value else []
     array = factory(
         '#field:#array',
-        name='nested_array_field',
+        name='compound_array_field',
         value=value,
         props={
-            'label': _(u'nested_array_field', default=u'Nested Array Field'),
+            'label': _(u'compound_array_field', default=u'Compound Array Field'),
             'array.label': ' ',
-            'help': _(u'nested_array_field_description',
-                      default=u'Nested Array Field Description'),
-            'required': _(u'nested_array_field_required',
-                          default=u'Nested Array Field must at least contain one entry'),
+            'help': _(u'compound_array_field_description',
+                      default=u'Compound Array Field Description'),
+            'required': _(u'compound_array_field_required',
+                          default=u'Compound Array Field must at least contain one entry'),
             'persist': True
         })
     compound = array['compound'] = factory('compound')
@@ -169,13 +169,13 @@ class IYafowilAutoformExampleBehavior(model.Schema):
         select_array_field_factory
     )
 
-    nested_array_field = schema.Tuple(required=False)
+    compound_array_field = schema.Tuple(required=False)
     directives.order(
-        'nested_array_field',
+        'compound_array_field',
         fieldset='default',
         after='select_array_field'
     )
     directives.factory_callable(
-        'nested_array_field',
-        nested_array_field_factory
+        'compound_array_field',
+        compound_array_field_factory
     )
