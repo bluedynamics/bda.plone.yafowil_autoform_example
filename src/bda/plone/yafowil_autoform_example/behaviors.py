@@ -161,7 +161,8 @@ def relations_array_field_factory(context):
         '#field:relation',
         props={
             'label': _(u'relation', default=u'Relation'),
-            'context': context
+            'context': context,
+            'pattern_name': 'array-relateditems'
         })
     return array
 
@@ -239,13 +240,13 @@ class IYafowilAutoformExampleBehavior(model.Schema):
         compound_array_field_factory
     )
 
-    # relations_array_field = schema.Tuple(required=False)
-    # directives.order(
-    #     'relations_array_field',
-    #     fieldset='default',
-    #     after='compound_array_field'
-    # )
-    # directives.factory_callable(
-    #     'relations_array_field',
-    #     relations_array_field_factory
-    # )
+    relations_array_field = schema.Tuple(required=False)
+    directives.order(
+        'relations_array_field',
+        fieldset='default',
+        after='compound_array_field'
+    )
+    directives.factory_callable(
+        'relations_array_field',
+        relations_array_field_factory
+    )
