@@ -1,8 +1,10 @@
-from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from yafowil.plone.autoform.form import DisplayAutoForm
 
 
-class YafowilExampleView(BrowserView):
+class YafowilExampleView(DisplayAutoForm):
+    skip_fields = ['title', 'description']
+    template = ViewPageTemplateFile('autoform_example_view.pt')
 
-    def __init__(self, context, request):
-        super(YafowilExampleView, self).__init__(context, request)
-        print(80 * '#')
+    def __call__(self):
+        return self.template()

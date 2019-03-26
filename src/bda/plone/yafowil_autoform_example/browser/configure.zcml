@@ -8,7 +8,6 @@
   <browser:page
     name="autoform_example_view"
     for="bda.plone.yafowil_autoform_example.interfaces.IYafowilAutoformExample"
-    template="autoform_example_view.pt"
     layer="bda.plone.yafowil_autoform_example.interfaces.IYafowilAutoformExampleLayer"
     permission="zope2.View"
     menu="plone_displayviews"

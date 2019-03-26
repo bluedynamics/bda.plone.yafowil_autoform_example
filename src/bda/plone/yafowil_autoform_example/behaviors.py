@@ -11,15 +11,15 @@ from zope.interface import provider
 _ = MessageFactory('bda.plone.yafowil_autoform_example')
 
 
-def autoform_field_1_value(context, widget, data):
-    """Getter function for ``IYafowilAutoformExampleBehavior.autoform_field_1``
+def selection_field_value(context, widget, data):
+    """Getter function for ``IYafowilAutoformExampleBehavior.selection_field``
     value.
     """
-    return context.autoform_field_1
+    return context.selection_field
 
 
-def autoform_field_1_vocab(context, widget, data):
-    """Getter function for ``IYafowilAutoformExampleBehavior.autoform_field_1``
+def selection_field_vocab(context, widget, data):
+    """Getter function for ``IYafowilAutoformExampleBehavior.selection_field``
     vocabulary.
     """
     return [
@@ -29,55 +29,57 @@ def autoform_field_1_vocab(context, widget, data):
     ]
 
 
-def autoform_field_2_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.autoform_field_2``.
+def text_array_field_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.text_array_field``.
     """
-    value = context.autoform_field_2
+    value = context.text_array_field
     value = value if value else []
-    array = factory('#field:#array',
-        name='autoform_field_2',
+    array = factory(
+        '#field:#array',
+        name='text_array_field',
         value=value,
         props={
-            'label': _(u'autoform_field_2', default=u'Autoform Field 2'),
+            'label': _(u'text_array_field', default=u'Text Array Field'),
             'array.label': ' ',
-            'help': _(u'autoform_field_2_description',
-                      default=u'Autoform Field 2 Description'),
-            'required': _(u'autoform_field_2_required',
-                          default=u'Autoform Field 2 must at least contain one entry'),
+            'help': _(u'text_array_field_description',
+                      default=u'Text Array Field Description'),
+            'required': _(u'text_array_field_required',
+                          default=u'Text Array Field must at least contain one entry'),
             'persist': True
         })
     array['field'] = factory(
         '#arrayfield:text',
         props={
-            'label': _(u'autoform_field_2_entry', default=u'Entry'),
-            'help': _(u'autoform_field_2_entry_help', default=u'Array Entry'),
-            'required': _(u'autoform_field_2_entry_required',
+            'label': _(u'text_array_field_entry', default=u'Entry'),
+            'help': _(u'text_array_field_entry_help', default=u'Array Entry'),
+            'required': _(u'text_array_field_entry_required',
                           default=u'Array Entry cannot be empty'),
         })
     return array
 
 
-def autoform_field_3_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.autoform_field_3``.
+def select_array_field_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.select_array_field``.
     """
-    value = context.autoform_field_3
+    value = context.select_array_field
     value = value if value else []
-    array = factory('#field:#array',
-        name='autoform_field_3',
+    array = factory(
+        '#field:#array',
+        name='select_array_field',
         value=value,
         props={
-            'label': _(u'autoform_field_3', default=u'Autoform Field 3'),
+            'label': _(u'select_array_field', default=u'Select Array Field'),
             'array.label': ' ',
-            'help': _(u'autoform_field_3_description',
-                      default=u'Autoform Field 3 Description'),
-            'required': _(u'autoform_field_3_required',
-                          default=u'Autoform Field 3 must at least contain one entry'),
+            'help': _(u'select_array_field_description',
+                      default=u'Select Array Field Description'),
+            'required': _(u'select_array_field_required',
+                          default=u'Select Array Field must at least contain one entry'),
             'persist': True
         })
     array['field'] = factory(
         '#arrayfield:select',
         props={
-            'label': _(u'autoform_field_3_entry', default=u'Entry'),
+            'label': _(u'select_array_field_entry', default=u'Entry'),
             'vocabulary': [
                 ('1', 'Value 1'),
                 ('2', 'Value 2'),
@@ -87,21 +89,22 @@ def autoform_field_3_factory(context):
     return array
 
 
-def autoform_field_4_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.autoform_field_4``.
+def nested_array_field_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.nested_array_field``.
     """
-    value = context.autoform_field_4
+    value = context.nested_array_field
     value = value if value else []
-    array = factory('#field:#array',
-        name='autoform_field_4',
+    array = factory(
+        '#field:#array',
+        name='nested_array_field',
         value=value,
         props={
-            'label': _(u'autoform_field_4', default=u'Autoform Field 4'),
+            'label': _(u'nested_array_field', default=u'Nested Array Field'),
             'array.label': ' ',
-            'help': _(u'autoform_field_4_description',
-                      default=u'Autoform Field 4 Description'),
-            'required': _(u'autoform_field_4_required',
-                          default=u'Autoform Field 4 must at least contain one entry'),
+            'help': _(u'nested_array_field_description',
+                      default=u'Nested Array Field Description'),
+            'required': _(u'nested_array_field_required',
+                          default=u'Nested Array Field must at least contain one entry'),
             'persist': True
         })
     compound = array['compound'] = factory('compound')
@@ -126,53 +129,53 @@ def autoform_field_4_factory(context):
 @provider(IFormFieldProvider)
 class IYafowilAutoformExampleBehavior(model.Schema):
 
-    autoform_field_1 = schema.TextLine(required=False)
+    selection_field = schema.TextLine(required=False)
     directives.order(
-        'autoform_field_1',
+        'selection_field',
         fieldset='default',
         after='title'
     )
     directives.factory(
-        'autoform_field_1',
+        'selection_field',
         blueprints='#field:select',
-        value=autoform_field_1_value,
+        value=selection_field_value,
         props={
-            'label': _(u'autoform_field_1', default=u'Autoform Field 1'),
-            'help': _(u'autoform_field_1_description',
-                      default=u'Autoform Field 1 Description'),
-            'vocabulary': autoform_field_1_vocab
+            'label': _(u'selection_field', default=u'Selection Field'),
+            'help': _(u'selection_field_description',
+                      default=u'Selection Field Description'),
+            'vocabulary': selection_field_vocab
         }
     )
 
-    autoform_field_2 = schema.Tuple(required=False)
+    text_array_field = schema.Tuple(required=False)
     directives.order(
-        'autoform_field_2',
+        'text_array_field',
         fieldset='default',
-        after='autoform_field_1'
+        after='selection_field'
     )
     directives.factory_callable(
-        'autoform_field_2',
-        autoform_field_2_factory
+        'text_array_field',
+        text_array_field_factory
     )
 
-    autoform_field_3 = schema.Tuple(required=False)
+    select_array_field = schema.Tuple(required=False)
     directives.order(
-        'autoform_field_3',
+        'select_array_field',
         fieldset='default',
-        after='autoform_field_2'
+        after='text_array_field'
     )
     directives.factory_callable(
-        'autoform_field_3',
-        autoform_field_3_factory
+        'select_array_field',
+        select_array_field_factory
     )
 
-    autoform_field_4 = schema.Tuple(required=False)
+    nested_array_field = schema.Tuple(required=False)
     directives.order(
-        'autoform_field_4',
+        'nested_array_field',
         fieldset='default',
-        after='autoform_field_3'
+        after='select_array_field'
     )
     directives.factory_callable(
-        'autoform_field_4',
-        autoform_field_4_factory
+        'nested_array_field',
+        nested_array_field_factory
     )
