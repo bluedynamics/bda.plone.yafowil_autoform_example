@@ -29,6 +29,13 @@ def selection_field_vocab(context, widget, data):
     ]
 
 
+def relation_field_value(context, widget, data):
+    """Getter function for ``IYafowilAutoformExampleBehavior.relation_field``
+    value.
+    """
+    return context.relation_field
+
+
 def text_array_field_factory(context):
     """Factory callback for ``IYafowilAutoformExampleBehavior.text_array_field``.
     """
@@ -126,6 +133,39 @@ def compound_array_field_factory(context):
     return array
 
 
+def relations_array_field_factory(context):
+    """Factory callback for ``IYafowilAutoformExampleBehavior.relations_array_field``.
+    """
+    value = context.relations_array_field
+    value = value if value else []
+    array = factory(
+        '#field:#array',
+        name='relations_array_field',
+        value=value,
+        props={
+            'label': _(u'relations_array_field', default=u'Relations Array Field'),
+            'array.label': ' ',
+            'help': _(u'relations_array_field_description',
+                      default=u'Relations Array Field Description'),
+            'required': _(u'relations_array_field_required',
+                          default=u'Relations Array Field must at least contain one entry'),
+            'persist': True
+        })
+    relations = array['compound'] = factory('compound')
+    relations['field_1'] = factory(
+        '#arrayfield:text',
+        props={
+            'label': _(u'textfield', default=u'Textfield')
+        })
+    relations['field_2'] = factory(
+        '#field:relation',
+        props={
+            'label': _(u'relation', default=u'Relation'),
+            'context': context
+        })
+    return array
+
+
 @provider(IFormFieldProvider)
 class IYafowilAutoformExampleBehavior(model.Schema):
 
@@ -147,11 +187,29 @@ class IYafowilAutoformExampleBehavior(model.Schema):
         }
     )
 
+    # relation_field = schema.TextLine(required=False)
+    # directives.order(
+    #     'relation_field',
+    #     fieldset='default',
+    #     after='selection_field'
+    # )
+    # directives.factory(
+    #     'relation_field',
+    #     blueprints='#field:relation',
+    #     value=relation_field_value,
+    #     props={
+    #         'label': _(u'relation_field', default=u'Relation Field'),
+    #         'help': _(u'relation_field_description',
+    #                   default=u'Relation Field Description'),
+    #         'context': lambda context, widget, data: context
+    #     }
+    # )
+
     text_array_field = schema.Tuple(required=False)
     directives.order(
         'text_array_field',
         fieldset='default',
-        after='selection_field'
+        after='relation_field'
     )
     directives.factory_callable(
         'text_array_field',
@@ -179,3 +237,14 @@ class IYafowilAutoformExampleBehavior(model.Schema):
         'compound_array_field',
         compound_array_field_factory
     )
+
+    # relations_array_field = schema.Tuple(required=False)
+    # directives.order(
+    #     'relations_array_field',
+    #     fieldset='default',
+    #     after='compound_array_field'
+    # )
+    # directives.factory_callable(
+    #     'relations_array_field',
+    #     relations_array_field_factory
+    # )
