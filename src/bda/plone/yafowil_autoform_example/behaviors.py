@@ -209,7 +209,8 @@ class IYafowilAutoformExampleBehavior(model.Schema):
     directives.order(
         'text_array_field',
         fieldset='default',
-        after='relation_field'
+        # after='relation_field'
+        after='selection_field'
     )
     directives.factory_callable(
         'text_array_field',
