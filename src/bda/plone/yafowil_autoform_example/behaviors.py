@@ -158,11 +158,10 @@ def relations_array_field_factory(context):
             'label': _(u'textfield', default=u'Textfield')
         })
     relations['field_2'] = factory(
-        '#field:relation',
+        '#arrayfield:#arrayrelation',
         props={
             'label': _(u'relation', default=u'Relation'),
-            'context': context,
-            'pattern_name': 'array-relateditems'
+            'context': context
         })
     return array
 
