@@ -3,6 +3,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from yafowil.base import factory
 from yafowil.plone.autoform import directives
+# from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.i18nmessageid import MessageFactory
 from zope.interface import provider
@@ -187,7 +189,7 @@ class IYafowilAutoformExampleBehavior(model.Schema):
         }
     )
 
-    # relation_field = schema.TextLine(required=False)
+    # relation_field = RelationChoice(required=False)
     # directives.order(
     #     'relation_field',
     #     fieldset='default',
@@ -205,41 +207,42 @@ class IYafowilAutoformExampleBehavior(model.Schema):
     #     }
     # )
 
-    text_array_field = schema.Tuple(required=False)
-    directives.order(
-        'text_array_field',
-        fieldset='default',
-        # after='relation_field'
-        after='selection_field'
-    )
-    directives.factory_callable(
-        'text_array_field',
-        text_array_field_factory
-    )
+    # text_array_field = schema.Tuple(required=False)
+    # directives.order(
+    #     'text_array_field',
+    #     fieldset='default',
+    #     # after='relation_field'
+    #     after='selection_field'
+    # )
+    # directives.factory_callable(
+    #     'text_array_field',
+    #     text_array_field_factory
+    # )
 
-    select_array_field = schema.Tuple(required=False)
-    directives.order(
-        'select_array_field',
-        fieldset='default',
-        after='text_array_field'
-    )
-    directives.factory_callable(
-        'select_array_field',
-        select_array_field_factory
-    )
+    # select_array_field = schema.Tuple(required=False)
+    # directives.order(
+    #     'select_array_field',
+    #     fieldset='default',
+    #     after='text_array_field'
+    # )
+    # directives.factory_callable(
+    #     'select_array_field',
+    #     select_array_field_factory
+    # )
 
     compound_array_field = schema.Tuple(required=False)
     directives.order(
         'compound_array_field',
         fieldset='default',
-        after='select_array_field'
+        # after='select_array_field'
+        after='selection_field'
     )
     directives.factory_callable(
         'compound_array_field',
         compound_array_field_factory
     )
 
-    relations_array_field = schema.Tuple(required=False)
+    relations_array_field = RelationList(required=False)
     directives.order(
         'relations_array_field',
         fieldset='default',
