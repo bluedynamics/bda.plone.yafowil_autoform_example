@@ -1,9 +1,12 @@
 from node.utils import UNSET
+from plone.app.textfield import RichText as RichTextField
+from plone.app.z3cform.widget import RichTextFieldWidget
+from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from yafowil.base import factory
 from yafowil.plone.autoform import directives
-# from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.i18nmessageid import MessageFactory
@@ -252,3 +255,24 @@ class IYafowilAutoformExampleBehavior(model.Schema):
         'relations_array_field',
         relations_array_field_factory
     )
+
+    richtext_description = RichTextField(
+        title='Rich Text Description',
+        description='Rich Text Widget as Description field',
+        required=False,
+        missing_value=''
+    )
+    form.widget(
+        'richtext_description',
+        RichTextFieldWidget,
+        pattern_options={
+            'tiny': {
+                'menu': [],
+                'menubar': [],
+                'plugins': [],
+                'toolbar': 'bold italic'
+            }
+        }
+    )
+    form.order_after(richtext_description='ITitle.title')
+    # form.mode(richtext_description='hidden')

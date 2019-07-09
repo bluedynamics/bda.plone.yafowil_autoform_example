@@ -14,3 +14,5 @@
 /pip-selfcheck.json
 /share/
 /src/bda.plone.yafowil_autoform_example.egg-info/
+/lib64
+/pyvenv.cfg
