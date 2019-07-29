@@ -54,6 +54,14 @@
   />
 
   <plone:behavior
+    name="yafowil.plone.examples.richtextarray"
+    title="YAFOWIL richtext array field example"
+    description="Richtext array field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilRichtextArrayFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
     name="yafowil.plone.examples.combined"
     title="YAFOWIL combined behaviors autoform example"
     description="Combined test behavior for yafowil.plone.autoform"

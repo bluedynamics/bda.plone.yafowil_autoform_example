@@ -22,14 +22,14 @@ _ = MessageFactory('bda.plone.yafowil_autoform_example')
 ###############################################################################
 
 def selection_field_value(context, widget, data):
-    """Getter function for ``IYafowilAutoformExampleBehavior.selection_field``
+    """Getter function for ``IYafowilSelectionFieldBehavior.selection_field``
     value.
     """
     return context.selection_field
 
 
 def selection_field_vocab(context, widget, data):
-    """Getter function for ``IYafowilAutoformExampleBehavior.selection_field``
+    """Getter function for ``.IYafowilSelectionFieldBehaviorselection_field``
     vocabulary.
     """
     return [
@@ -66,7 +66,7 @@ class IYafowilSelectionFieldBehavior(model.Schema):
 ###############################################################################
 
 def relation_field_value(context, widget, data):
-    """Getter function for ``IYafowilAutoformExampleBehavior.relation_field``
+    """Getter function for ``IYafowilRelationFieldBehavior.relation_field``
     value.
     """
     return context.relation_field
@@ -94,7 +94,7 @@ class IYafowilRelationFieldBehavior(model.Schema):
 ###############################################################################
 
 def text_array_field_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.text_array_field``.
+    """Factory callback for ``IYafowilTextArrayFieldBehavior.text_array_field``.
     """
     value = context.text_array_field
     value = value if value else []
@@ -137,7 +137,7 @@ class IYafowilTextArrayFieldBehavior(model.Schema):
 ###############################################################################
 
 def select_array_field_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.select_array_field``.
+    """Factory callback for ``IYafowilSelectArrayFieldBehavior.select_array_field``.
     """
     value = context.select_array_field
     value = value if value else []
@@ -182,7 +182,7 @@ class IYafowilSelectArrayFieldBehavior(model.Schema):
 ###############################################################################
 
 def compound_array_field_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.compound_array_field``.
+    """Factory callback for ``IYafowilCompoundArrayFieldBehavior.compound_array_field``.
     """
     value = context.compound_array_field
     value = value if value else []
@@ -233,7 +233,7 @@ class IYafowilCompoundArrayFieldBehavior(model.Schema):
 ###############################################################################
 
 def relations_array_field_factory(context):
-    """Factory callback for ``IYafowilAutoformExampleBehavior.relations_array_field``.
+    """Factory callback for ``IYafowilRelationArrayFieldBehavior.relations_array_field``.
     """
     value = context.relations_array_field
     value = value if value else []
@@ -276,6 +276,55 @@ class IYafowilRelationArrayFieldBehavior(model.Schema):
 
 
 ###############################################################################
+# Richtext array field example
+###############################################################################
+
+def richtext_array_field_factory(context):
+    """Factory callback for ``IYafowilRichtextArrayFieldBehavior.relations_array_field``.
+    """
+    value = context.richtext_array_field
+    value = value if value else []
+    array = factory(
+        '#field:#array',
+        name='richtext_array_field',
+        value=value,
+        props={
+            'label': _(u'richtext_array_field', default=u'Richtext Array Field'),
+            'array.label': ' ',
+            'help': _(u'richtext_array_field_description',
+                      default=u'Richtext Array Field Description'),
+            'required': _(u'richtext_array_field_required',
+                          default=u'Richtext Array Field must at least contain one entry'),
+            'persist': True
+        })
+    array['field'] = factory(
+        '#arrayfield:#arrayrichtext',
+        props={
+            'label': _(u'richtext_array_field_entry', default=u'Entry'),
+            'pattern_options': {
+                'tiny': {
+                    'menu': [],
+                    'menubar': [],
+                    'plugins': [],
+                    'toolbar': 'bold italic'
+                }
+            },
+            'context': context
+        })
+    return array
+
+
+@provider(IFormFieldProvider)
+class IYafowilRichtextArrayFieldBehavior(model.Schema):
+
+    richtext_array_field = schema.Tuple(required=False)
+    directives.factory_callable(
+        'richtext_array_field',
+        richtext_array_field_factory
+    )
+
+
+###############################################################################
 # combined behaviors example
 ###############################################################################
 
@@ -286,7 +335,8 @@ class IYafowilAutoformExampleBehavior(
     IYafowilTextArrayFieldBehavior,
     IYafowilSelectArrayFieldBehavior,
     IYafowilCompoundArrayFieldBehavior,
-    IYafowilRelationArrayFieldBehavior
+    IYafowilRelationArrayFieldBehavior,
+    IYafowilRichtextArrayFieldBehavior
 ):
 
     # directives.order(
@@ -314,12 +364,18 @@ class IYafowilAutoformExampleBehavior(
         fieldset='default',
         after='compound_array_field'
     )
+    directives.order(
+        'richtext_array_field',
+        fieldset='default',
+        after='relations_array_field'
+    )
 
 
 ###############################################################################
 # Integration and z3cform compatibility test behaviors
 ###############################################################################
 
+@provider(IFormFieldProvider)
 class IRichtextCompatTestBehavior(IDublinCore):
 
     richtext_description = RichTextField(
