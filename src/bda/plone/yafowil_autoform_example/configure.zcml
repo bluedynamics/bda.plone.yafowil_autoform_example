@@ -6,9 +6,66 @@
   <include package=".browser" />
 
   <plone:behavior
-    title="YAFOWIL Autoform Example Behavior"
-    description="Behavior for testing yafowil.plone.autoform"
+    name="yafowil.plone.examples.selection"
+    title="YAFOWIL selection field example"
+    description="Selection field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilSelectionFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.relation"
+    title="YAFOWIL relation field example"
+    description="Relation field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilRelationFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.textarray"
+    title="YAFOWIL text array field example"
+    description="Text array field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilTextArrayFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.selectarray"
+    title="YAFOWIL select array field example"
+    description="Select array field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilSelectArrayFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.compoundarray"
+    title="YAFOWIL compound array field example"
+    description="Compound array field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilCompoundArrayFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.relationarray"
+    title="YAFOWIL relation array field example"
+    description="Relation array field test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IYafowilRelationArrayFieldBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.combined"
+    title="YAFOWIL combined behaviors autoform example"
+    description="Combined test behavior for yafowil.plone.autoform"
     provides=".behaviors.IYafowilAutoformExampleBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
+  <plone:behavior
+    name="yafowil.plone.examples.z3cform.richtext"
+    title="YAFOWIL z3cform richtext integration example"
+    description="z3cform richtext integration test behavior for yafowil.plone.autoform"
+    provides=".behaviors.IRichtextCompatTestBehavior"
     for="plone.dexterity.interfaces.IDexterityContent"
   />
 
