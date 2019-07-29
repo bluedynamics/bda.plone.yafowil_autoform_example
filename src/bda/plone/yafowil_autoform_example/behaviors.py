@@ -75,7 +75,8 @@ def relation_field_value(context, widget, data):
 @provider(IFormFieldProvider)
 class IYafowilRelationFieldBehavior(model.Schema):
 
-    relation_field = RelationChoice(required=False)
+    # relation_field = RelationChoice(required=False, values=[])
+    relation_field = RelationList(required=False)
     directives.factory(
         'relation_field',
         blueprints='#field:relation',
@@ -279,6 +280,7 @@ class IYafowilRelationArrayFieldBehavior(model.Schema):
 # combined behaviors example
 ###############################################################################
 
+@provider(IFormFieldProvider)
 class IYafowilAutoformExampleBehavior(
     IYafowilSelectionFieldBehavior,
     IYafowilRelationFieldBehavior,
